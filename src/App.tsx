@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  ArrowUpRight,
   Smartphone,
   Layout,
   Layers,
@@ -244,16 +243,13 @@ function App() {
 
 // Components
 
-function ExperienceItem({ dates, role, company, desc, stack }: any) {
+function ExperienceItem({ dates, role, desc, stack }: any) {
   return (
     <div className="flex flex-col md:flex-row gap-4 md:gap-8 group">
       <div className="w-32 flex-shrink-0 text-sm md:text-[15px] pt-1 text-neutral-500 font-['JetBrains_Mono'] mt-1">
         {dates}
       </div>
       <div className="flex-1">
-        {/* <a href="#" className="arrow-link text-xl md:text-2xl font-['Outfit'] font-bold text-white mb-2">
-          {company} <ArrowUpRight size={20} className="text-neutral-500" />
-        </a> */}
         <h4 className="text-lg text-white/80 mb-4">{role}</h4>
         <p className="text-[15px] md:text-lg leading-relaxed mb-6 text-[#a1a1aa] max-w-2xl">{desc}</p>
         <p className="text-sm font-['JetBrains_Mono'] font-medium text-neutral-500 uppercase tracking-wider">{stack}</p>
@@ -289,9 +285,6 @@ function ProjectCard({ title, type, desc, tags, colorHex, icon }: any) {
               </span>
             ))}
           </div>
-          {/* <a href="#" className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform">
-            <ArrowUpRight size={20} />
-          </a> */}
         </div>
       </div>
     </div>
