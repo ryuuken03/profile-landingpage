@@ -1,66 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Outfit', sans-serif;
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  --color-accent-lime: #ccff00;
-  --color-accent-purple: #7510F7;
-  --color-accent-orange: #ff6b35;
 }
 
 body {
-  @apply bg-[#030303] text-[#a1a1aa] font-sans antialiased selection:bg-[#ccff00] selection:text-black;
+  @apply bg-[#0a0a0a] text-slate-300 font-sans antialiased selection:bg-emerald-500/30 selection:text-emerald-200;
   margin: 0;
   min-height: 100vh;
-  /* Very subtle noise/texture background for that rich black feel */
-  background-image: radial-gradient(circle at 50% -20%, #111111 0%, #030303 40%);
+  background-image: 
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 40%),
+    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 40%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
   background-attachment: fixed;
 }
 
-/* Atmospheric Glows (Bonhomme style) */
-.glow-bg {
-  position: absolute;
-  width: 80vw;
-  height: 80vh;
-  max-width: 1000px;
-  background: radial-gradient(circle at 50% 50%, rgba(117, 16, 247, 0.1) 0%, rgba(0, 0, 0, 0) 60%);
-  top: -20vh;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* Pill Badges (Onyedika style) */
-.text-badge {
-  @apply inline-block px-4 py-1 rounded-[1rem] text-[#030303] font-heading font-black leading-tight translate-y-[-4px] tracking-tight;
-}
-
-/* Timeline Arrow (Bonhomme style) */
-.arrow-link {
-  @apply inline-flex items-center gap-1 hover:text-white transition-colors duration-300;
-}
-
-.arrow-link:hover svg {
-  @apply translate-x-1 -translate-y-1 transition-transform duration-300;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0a0a0a;
 }
-
 ::-webkit-scrollbar-thumb {
   @apply bg-neutral-800 rounded-full;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-neutral-700;
 }

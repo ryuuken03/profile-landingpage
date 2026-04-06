@@ -1,299 +1,439 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Smartphone,
-  Layout,
-  Layers,
+  Github,
   Linkedin,
-  Instagram,
   Mail,
-  Github
+  MapPin,
+  GraduationCap,
+  ExternalLink,
+  ChevronRight,
+  Menu,
+  X,
+  Code2,
+  Terminal,
+  Database,
+  Smartphone,
+  Cpu,
+  Sun,
+  Calendar
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { SiThreads } from 'react-icons/si';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#030303] text-[#a1a1aa] font-sans overflow-x-hidden selection:bg-[#ccff00] selection:text-black">
+    <div className="min-h-screen">
+      {/* Header */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <div className="text-2xl font-['Plus_Jakarta_Sans'] font-bold text-white flex items-center">
+            toriq<span className="text-emerald-500">.</span>
+          </div>
 
-      {/* Background Atmospheric Glow */}
-      <div className="glow-bg"></div>
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+            <a href="#about" className="hover:text-emerald-400 transition-colors">About</a>
+            <a href="#skills" className="hover:text-emerald-400 transition-colors">Skills</a>
+            <a href="#experience" className="hover:text-emerald-400 transition-colors">Experience</a>
+            <a href="#projects" className="hover:text-emerald-400 transition-colors">Projects</a>
+            <a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a>
+          </nav>
 
-      {/* Dynamic Island Navigation (Onyedika Inspired) */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-[90%] md:w-[600px] h-14 bg-[#111111]/80 backdrop-blur-xl rounded-full px-2 shadow-2xl border border-white/10">
-        <div className="w-10 h-10 bg-[#1c1c1c] border border-white/5 rounded-full flex items-center justify-center text-[#CCFF00] ml-1 cursor-pointer hover:scale-105 transition-transform font-bold tracking-tighter text-sm">
-          MT
+          <div className="hidden md:flex items-center gap-4">
+            <button className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors">
+              <Sun size={18} />
+            </button>
+            <a href="#contact" className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors">
+              Hire Me
+            </a>
+          </div>
+
+          <button className="md:hidden text-slate-300 relative z-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
         </div>
-        <div className="hidden sm:flex items-center gap-6 font-semibold text-white/90 text-sm tracking-wide">
-          <a href="#about" className="hover:text-white hover:scale-105 transition-all">About</a>
-          <a href="#work" className="hover:text-white hover:scale-105 transition-all">Work</a>
-          <a href="#projects" className="hover:text-white hover:scale-105 transition-all">Projects</a>
-          <a href="#contact" className="hover:text-white hover:scale-105 transition-all">Contact</a>
-        </div>
-        <button className="w-10 h-10 bg-white text-black rounded-full flex flex-col items-center justify-center gap-[3px] mr-1 hover:bg-[#ccff00] transition-colors shadow-lg">
-          <span className="w-4 h-[2px] bg-current rounded-full" />
-          <span className="w-4 h-[2px] bg-current rounded-full" />
-          <span className="w-4 h-[2px] bg-current rounded-full" />
-        </button>
-      </nav>
 
-      {/* Centered Hero Section (Matt Farley + Onyedika) */}
-      <header className="pt-36 md:pt-48 px-6 max-w-5xl mx-auto flex flex-col items-center text-center relative z-10">
-        <div className="bg-[#1c1c1c] text-white/70 border border-white/10 font-mono text-xs px-4 py-2 rounded-full mb-8 inline-flex items-center gap-2 transform -rotate-1 hover:border-white/30 transition-colors">
-          Hey there, I'm Toriq! ✨
-        </div>
-
-        <h1 className="text-[3rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[6.5rem] leading-[1.05] font-['Outfit'] font-black tracking-tighter w-full max-w-[1000px] text-white">
-          AI Agent<br />
-          Orchestrator &<br />
-          <span className="bg-[#7510F7] text-badge">Fullstack</span>{' '}
-          <span className="bg-[#ccff00] text-badge">Engineer</span>
-        </h1>
-
-        <p className="mt-12 text-xl md:text-2xl text-[#a1a1aa] font-medium max-w-2xl leading-relaxed">
-          Over 7 years of engineering experience, now pioneering AI-driven development. I orchestrate complex workflows using Claude 3.5 and AntiGravity IDE to build intelligent, scalable solutions.
-        </p>
-
-        {/* Floating Avatar (Matt Farley) */}
-        {/* <div className="mt-20 w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#111111] border-4 border-[#1c1c1c] flex items-center justify-center text-neutral-600 font-mono text-sm relative shadow-[0_0_50px_rgba(117,16,247,0.3)]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#7510F7]/20 to-[#ccff00]/10 rounded-full opacity-50"></div>
-          <span className="relative z-10">[ Avatar ]</span>
-        </div> */}
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-[#111] border-b border-white/5 p-6 md:hidden flex flex-col gap-4 shadow-2xl">
+            <a href="#about" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-emerald-400 font-medium py-2">About</a>
+            <a href="#skills" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-emerald-400 font-medium py-2">Skills</a>
+            <a href="#experience" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-emerald-400 font-medium py-2">Experience</a>
+            <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-emerald-400 font-medium py-2">Projects</a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-slate-300 hover:text-emerald-400 font-medium py-2">Contact</a>
+            <a href="#contact" onClick={() => setIsMenuOpen(false)} className="bg-emerald-500 text-white text-center py-3 rounded-lg font-medium mt-2">Hire Me</a>
+          </div>
+        )}
       </header>
 
-      {/* Bento-grid Expertise Section (Tamal Sen + Onyedika) */}
-      <section className="px-4 md:px-8 py-24 relative z-20" id="about">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-
-          <div className="bg-[#111111] rounded-[2.5rem] p-10 md:p-14 border border-white/5 hover:border-white/10 transition-colors flex flex-col justify-between group shadow-xl h-[450px]">
-            <div>
-              <div className="w-16 h-16 bg-[#1c1c1c] text-[#ccff00] border border-white/5 rounded-[1.5rem] flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
-                <Smartphone size={32} strokeWidth={2.5} />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-['Outfit'] font-bold text-white mb-4 tracking-tighter">Mobile Expert</h3>
-              <p className="text-lg text-[#a1a1aa] leading-relaxed">7 years architecting resilient mobile ecosystems across Kotlin and Flutter. Mastering Clean Architecture and MVVM for high-scale apps.</p>
-            </div>
-            <div className="mt-8 flex gap-3 text-xs font-['JetBrains_Mono'] font-bold text-[#ccff00]">
-              <span className="px-4 py-2 bg-[#ccff00]/10 rounded-full border border-[#ccff00]/20">Kotlin</span>
-              <span className="px-4 py-2 bg-[#ccff00]/10 rounded-full border border-[#ccff00]/20">Flutter</span>
-            </div>
+      {/* Hero Section */}
+      <section className="pt-40 pb-20 md:pt-48 md:pb-32 px-6 max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20">
+        <div className="flex-1 text-center md:text-left">
+          <div className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-medium text-sm mb-6">
+            👋 Welcome to my portfolio
           </div>
-
-          <div className="bg-[#111111] rounded-[2.5rem] p-10 md:p-14 border border-white/5 hover:border-white/10 transition-colors flex flex-col justify-between group shadow-xl h-[450px]">
-            <div>
-              <div className="w-16 h-16 bg-[#1c1c1c] text-[#7510F7] border border-white/5 rounded-[1.5rem] flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform">
-                <Layout size={32} strokeWidth={2.5} />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-['Outfit'] font-bold text-white mb-4 tracking-tighter">Fullstack & AI</h3>
-              <p className="text-lg text-[#a1a1aa] leading-relaxed">Transitioning expertise into AI-driven web development. Building intelligent agents and SaaS platforms with React, Node.js, and Claude 3.5.</p>
-            </div>
-            <div className="mt-8 flex gap-3 text-xs font-['JetBrains_Mono'] font-bold text-[#7510F7]">
-              <span className="px-4 py-2 bg-[#7510F7]/10 rounded-full border border-[#7510F7]/20">Node.js</span>
-              <span className="px-4 py-2 bg-[#7510F7]/10 rounded-full border border-[#7510F7]/20">Next.js</span>
-            </div>
-          </div>
-
-          <div className="col-span-1 md:col-span-2 bg-[#1c1c1c] rounded-[2.5rem] p-10 md:p-14 border border-[#ff6b35]/20 hover:border-[#ff6b35]/40 transition-colors flex flex-col md:flex-row items-center gap-12 relative overflow-hidden shadow-2xl min-h-[400px]">
-            <div className="absolute right-0 top-0 w-[500px] h-[500px] bg-[#ff6b35] opacity-5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            <div className="flex-1 relative z-10 w-full">
-              <div className="w-16 h-16 bg-[#ff6b35]/10 text-[#ff6b35] border border-[#ff6b35]/20 rounded-[1.5rem] flex items-center justify-center mb-8 shadow-inner hover:scale-110 transition-transform">
-                <Layers size={32} strokeWidth={2.5} />
-              </div>
-              <h3 className="text-3xl md:text-4xl font-['Outfit'] font-bold text-white mb-4 tracking-tighter">AI Orchestration</h3>
-              <p className="text-lg md:text-xl text-[#a1a1aa] mb-8 max-w-xl leading-relaxed">Leveraging the power of LLMs (Claude 3.5 Sonnet) and MCP to automate complex coding workflows with AntiGravity IDE and Clean Architecture.</p>
-              <div className="flex gap-3 text-xs font-['JetBrains_Mono'] font-bold text-[#ff6b35]">
-                <span className="px-4 py-2 bg-[#ff6b35]/10 rounded-full border border-[#ff6b35]/20">Claude 3.5</span>
-                <span className="px-4 py-2 bg-[#ff6b35]/10 rounded-full border border-[#ff6b35]/20">MCP</span>
-                <span className="px-4 py-2 bg-[#ff6b35]/10 rounded-full border border-[#ff6b35]/20">Clean Arch</span>
-              </div>
-            </div>
-
-            {/* Decorative Phone Graphic */}
-            <div className="w-[280px] h-[350px] bg-[#111111] border-[12px] border-[#0a0a0a] rounded-[3rem] shrink-0 relative flex flex-col -mb-32 shadow-[0_30px_60px_rgba(0,0,0,0.5)] overflow-hidden hidden md:flex">
-              <div className="w-1/2 h-6 bg-[#0a0a0a] absolute top-0 left-1/2 -translate-x-1/2 rounded-b-xl z-20"></div>
-              <div className="w-full h-1/2 bg-[#ff6b35]/90 p-6 text-black flex flex-col justify-end">
-                <div className="w-3/4 h-8 bg-black/20 rounded-lg mb-4"></div>
-                <div className="w-1/2 h-4 bg-black/10 rounded-md"></div>
-              </div>
-              <div className="w-full h-1/2 bg-[#1c1c1c] p-6 space-y-4 pt-12">
-                <div className="w-full h-12 bg-white/5 rounded-2xl"></div>
-                <div className="w-full h-12 bg-white/5 rounded-2xl"></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* Timeline Work Experience (Bonhomme) */}
-      <section className="py-24 px-6 md:px-8 max-w-4xl mx-auto" id="work">
-        <h2 className="text-2xl font-['Outfit'] font-bold text-white mb-16 px-4 border-l-4 border-[#7510F7]">Work Experience</h2>
-        <div className="space-y-16">
-          <ExperienceItem
-            dates="2026 - present"
-            role="AI Software Architect & SaaS Developer"
-            company="Freelance"
-            desc="Architecting GresikPunyaUMKM, a multi-tenant SaaS catalog platform for MSMEs. Automating complex coding workflows and database schema generation using Claude 3.5 and AntiGravity IDE."
-            stack="React • Node.js • Claude 3.5 • AntiGravity IDE"
-          />
-          <ExperienceItem
-            dates="2024"
-            role="Fullstack Developer"
-            company="Telkomsat"
-            desc="Engineered an enterprise-level Inventory Management System. Integrated real-time asset tracking visualizations using Leaflet Maps and developed robust data export/import functionalities."
-            stack="Next.js • Laravel • Leaflet • MySQL"
-          />
-          <ExperienceItem
-            dates="2019 - 2023"
-            role="Android Developer"
-            company="Ekosis"
-            desc="Built high-performance marketplace features. Engineered secure JWT authentication flows and managed local data persistence with Realm. Collaborated on mobile app reliability and scalability."
-            stack="Kotlin • Firebase • Retrofit • Realm"
-          />
-        </div>
-
-        <div className="mt-20 pt-16 border-t border-white/5">
-          <h2 className="text-2xl font-['Outfit'] font-bold text-white mb-8 px-4 border-l-4 border-[#ccff00]">Education</h2>
-          <div className="px-4">
-            <h4 className="text-xl text-white font-bold">University of Brawijaya</h4>
-            <p className="text-lg text-[#a1a1aa]">Bachelor of Informatics Engineering • Graduate 2019</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Selected Projects Cards (Tamal Sen / Onyedika style) */}
-      <section className="py-24 px-4 md:px-8 bg-[#0a0a0a] border-y border-white/5" id="projects">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl md:text-6xl font-['Outfit'] font-black text-white tracking-tighter mb-16 text-center">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-
-            <ProjectCard
-              title="GresikPunyaUMKM"
-              type="SaaS Platform"
-              desc="A multi-tenant SaaS catalog platform empowering MSMEs with AI-automated product listings and intelligent database management."
-              tags={['React', 'Node.js', 'Claude 3.5']}
-              colorHex="#ccff00"
-              icon="🤖"
-            />
-
-            <ProjectCard
-              title="Enterprise IMS"
-              type="Inventory Management"
-              desc="Full-scale inventory system for Telkomsat with real-time asset tracking, executive dashboards, and interactive Leaflet map integration."
-              tags={['Next.js', 'Laravel', 'Leaflet']}
-              colorHex="#7510F7"
-              icon="📦"
-            />
-
-          </div>
-        </div>
-      </section>
-
-      {/* Floating CTA Before Footer (Matt Farley + Onyedika mix) */}
-      <section className="relative -mb-28 z-30 px-6 max-w-4xl mx-auto" id="contact">
-        <div className="bg-[#1c1c1c] border border-white/10 rounded-[2rem] md:rounded-[3rem] p-10 md:p-16 flex flex-col md:flex-row items-center justify-between shadow-[0_30px_60px_rgba(0,0,0,0.6)] group">
-          <div className="mb-8 md:mb-0 md:mr-8 text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-['Outfit'] font-black text-white tracking-tighter mb-4">Let's build<br />something <span className="text-[#ccff00]">great.</span></h2>
-            <p className="text-[#a1a1aa] text-lg max-w-xs">Interested in working together? We should queue up a chat.</p>
-          </div>
-
-          <div className="flex flex-col gap-4 w-full md:w-auto">
-            <a href="https://wa.me/6285797416210" className="bg-[#ccff00] text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform flex items-center justify-center gap-3">
-              <FaWhatsapp size={20} />
-              WhatsApp
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-['Plus_Jakarta_Sans'] font-extrabold text-white leading-[1.1] mb-6 mt-2 tracking-tight">
+            Hi, I'm <br /><span className="text-emerald-500">Mohammad Toriq</span>
+          </h1>
+          <h2 className="text-xl md:text-2xl text-slate-300 font-medium mb-6 font-['JetBrains_Mono']">
+            &gt; AI Agent Orchestrator & Fullstack Engineer_
+          </h2>
+          <p className="text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto md:mx-0 mb-10">
+            Over 7 years of engineering experience, now pioneering AI-driven development. I orchestrate complex workflows using leading LLMs and build scalable mobile & web ecosystems.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+            <a href="#contact" className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3.5 rounded-xl font-medium transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center justify-center gap-2">
+              Let's Talk <ChevronRight size={18} />
             </a>
-            <a href="mailto:mohammad.toriq03@gmail.com" className="bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:scale-105 transition-transform flex items-center justify-center gap-3">
-              <Mail size={18} />
-              Email Me
+            <a href="#projects" className="w-full sm:w-auto bg-transparent hover:bg-white/5 border border-white/10 text-white px-8 py-3.5 rounded-xl font-medium transition-colors flex items-center justify-center gap-2">
+              View Projects
             </a>
           </div>
         </div>
+        <div className="flex-1 flex justify-center md:justify-end relative">
+          <div className="absolute inset-0 bg-emerald-500/20 blur-[100px] rounded-full"></div>
+          <div className="w-72 h-72 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] rounded-full border border-emerald-500/30 p-2 relative z-10 bg-[#111] overflow-hidden group">
+            <div className="w-full h-full rounded-full bg-gradient-to-br from-neutral-900 to-black border border-white/5 relative overflow-hidden flex items-center justify-center">
+              <img
+                src="/profile.png"
+                alt="Mohammad Toriq"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-emerald-500/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-500"></div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Dark Gradient Footer */}
-      <footer className="pt-48 pb-16 px-6 bg-[#030303] text-center relative overflow-hidden border-t border-white/5">
+      {/* Stats Bar */}
+      {/* <div className="border-y border-white/5 bg-[#111]/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-wrap justify-center gap-12 md:gap-24">
+          <Stat label="Years Experience" value="7+" />
+          <Stat label="Projects Completed" value="30+" />
+          <Stat label="Happy Clients" value="15+" />
+        </div>
+      </div> */}
 
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-t from-[#7510F7]/20 to-transparent blur-[80px] pointer-events-none rounded-full"></div>
+      {/* About Section */}
+      <section id="about" className="py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-center">
+          <div className="md:col-span-4">
+            <div className="rounded-3xl bg-[#111] border border-white/5 p-8 relative flex flex-col items-center text-center shadow-xl">
+              <div className="w-24 h-24 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6">
+                <Terminal size={40} />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2 font-['Plus_Jakarta_Sans']">Quick Info</h3>
+              <p className="text-slate-400 mb-6 text-sm">A brief overview of who I am.</p>
 
-        <div className="relative z-10 flex flex-col items-center">
-          {/* Minimal Logo */}
-          <div className="w-16 h-16 border border-white/10 rounded-2xl flex items-center justify-center mb-8 bg-[#111111] font-bold text-white text-2xl tracking-tighter">
-            MT
+              <div className="w-full space-y-4">
+                <InfoItem icon={<MapPin size={18} />} label="Location" value="Gresik, Indonesia" />
+                <InfoItem icon={<Mail size={18} />} label="Email" value="Hit me up!" />
+                <InfoItem icon={<GraduationCap size={18} />} label="Degree" value="B.S. Informatics" />
+              </div>
+            </div>
+          </div>
+          <div className="md:col-span-8">
+            <SectionHeader title="About Me" subtitle="Who I am & what I do" />
+            <div className="prose prose-invert prose-lg text-slate-400 max-w-none">
+              <p>
+                I am a seasoned <strong className="text-emerald-400 font-semibold">Software Developer</strong> with over 7 years of deep technical experience. Originally specializing in high-performance Android ecosystems (Kotlin/Flutter) and Clean Architecture, I've successfully deployed multi-module platforms for startups with millions of users.
+              </p>
+              <p>
+                Today, I am heavily focused on the intersection of <strong className="text-emerald-400 font-semibold">Fullstack development and Artificial Intelligence</strong>. I leverage advanced models like Claude 3.5 alongside AntiGravity IDE and MCP (Model Context Protocol) to pioneer AI-driven coding workflows, accelerating deployment times without sacrificing structural integrity.
+              </p>
+            </div>
+
+            <div className="flex gap-4 mt-8">
+              <a href="https://github.com/ryuuken03" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[#111] border border-white/5 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-colors">
+                <Github size={20} />
+              </a>
+              <a href="https://www.linkedin.com/in/mohammadtoriq/" target="_blank" rel="noreferrer" className="w-12 h-12 rounded-full bg-[#111] border border-white/5 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 transition-colors">
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-24 px-6 bg-[#111]/30 border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <SectionHeader title="My Skills & Expertise" subtitle="Technologies I work with" centered />
           </div>
 
-          <p className="text-lg text-[#a1a1aa] mb-12 max-w-sm font-medium">
-            Living, learning, & leveling up one application at a time.
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <SkillCard
+              icon={<Code2 />}
+              title="Frontend Web"
+              skills={['React', 'Next.js', 'Tailwind CSS', 'TypeScript']}
+            />
+            <SkillCard
+              icon={<Smartphone />}
+              title="Mobile Development"
+              skills={['Kotlin (Android)', 'Flutter', 'Jetpack Compose', 'Clean Arch']}
+            />
+            <SkillCard
+              icon={<Database />}
+              title="Backend & Cloud"
+              skills={['Node.js', 'Express.js', 'Laravel', 'MySQL', 'PostgreSQL', 'Firebase']}
+            />
+            <SkillCard
+              icon={<Cpu />}
+              title="AI & Orchestration"
+              skills={['Claude 3.5 Sonnet', 'AntiGravity IDE', 'MCP', 'LLMs']}
+            />
+            {/* <SkillCard
+              icon={<Terminal />}
+              title="Tools & Architecture"
+              skills={['Git', 'REST APIs', 'GraphQL', 'Vite']}
+            /> */}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-24 px-6 max-w-4xl mx-auto">
+        <SectionHeader title="Experience" subtitle="My professional journey" />
+
+        <div className="mt-16 relative">
+          {/* Main Timeline Line */}
+          <div className="absolute left-0 md:left-1/2 top-4 bottom-4 w-px bg-white/5 -translate-x-1/2"></div>
+
+          <div className="space-y-12">
+            <ExperienceItem
+              dates="2026 - Present"
+              role="AI Software Architect & SaaS Developer"
+              company="Freelance"
+              description="Architecting Resik, a multi-tenant SaaS catalog platform for MSMEs. Automating complex coding workflows and database schema generation using AI AntiGravity."
+              align="right"
+              latest
+            />
+            <ExperienceItem
+              dates="2024 - 2025"
+              role="Fullstack Developer"
+              company="Telkomsat"
+              description="Engineered an enterprise-level Inventory Management System. Integrated real-time asset tracking visualizations using Leaflet Maps and developed robust data export/import functionalities."
+              align="left"
+            />
+            <ExperienceItem
+              dates="2019 - 2023"
+              role="Senior Android Developer"
+              company="Ekosis"
+              description="Built high-performance marketplace features. Engineered secure JWT authentication flows and managed local data persistence with Realm. Mentored junior developers and scaled the app architecturally."
+              align="right"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 px-6 max-w-7xl mx-auto bg-[#111]/30 rounded-3xl border border-white/5 my-12">
+        <div className="text-center mb-16 px-4">
+          <SectionHeader title="Featured Projects" subtitle="Selected recent work" centered />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8">
+          <ProjectCard
+            title="Resik (Ongoing)"
+            category="SaaS Platform"
+            description="A multi-tenant SaaS catalog platform built entirely with the help of AI AntiGravity, automating complex coding workflows and intelligent database management."
+            tech={['React', 'Node.js', 'AntiGravity AI']}
+          />
+          <ProjectCard
+            title="Enterprise IMS"
+            category="Inventory Management"
+            description="Full-scale inventory system for Telkomsat with real-time asset tracking, executive dashboards, and interactive maps."
+            tech={['Next.js', 'Laravel', 'Leaflet']}
+          />
+          <ProjectCard
+            title="Maca Comic Reader"
+            category="Cross-Platform App"
+            description="High-performance comic reader built with Flutter. Implements Clean Architecture with specialized Providers, SQLite for offline history, and REST API integration."
+            tech={['Flutter', 'Dart', 'Provider', 'SQLite']}
+          />
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 px-6 relative">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="w-20 h-20 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-500 mb-8">
+            <Mail size={32} />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-bold text-white mb-6">Got a Project? <br /> Let's Talk!</h2>
+          <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
+            I'm currently available for freelance work and open to new opportunities. If you have a project that needs some creative integration or AI orchestration, I'd love to hear about it.
           </p>
 
-          <div className="flex items-center gap-6 mb-16">
-            <SocialIcon icon={<Linkedin size={20} />} link="https://www.linkedin.com/in/mohammadtoriq/" />
-            <SocialIcon icon={<Instagram size={20} />} link="https://www.instagram.com/mohammadtoriq/" />
-            <SocialIcon icon={<SiThreads size={20} />} link="https://www.threads.net/@mohammadtoriq" />
-            <SocialIcon icon={<Github size={20} />} link="https://github.com/ryuuken03" />
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="mailto:mohammad.toriq03@gmail.com" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20">
+              mohammad.toriq03@gmail.com
+            </a>
+            <a href="https://wa.me/6285797416210" className="bg-[#222] hover:bg-[#333] border border-white/10 text-white px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-3">
+              <FaWhatsapp size={20} className="text-[#25D366]" />
+              WhatsApp Me
+            </a>
           </div>
+        </div>
+      </section>
 
-          <div className="text-[#a1a1aa]/60 text-sm font-['JetBrains_Mono']">
-            © {new Date().getFullYear()} Mohammad Toriq. Handcrafted.
+      {/* Footer */}
+      <footer className="border-t border-white/5 py-12 px-6 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-xl font-['Plus_Jakarta_Sans'] font-bold text-white">
+            Mohammad Toriq<span className="text-emerald-500">.</span>
+          </div>
+          <p className="text-slate-500 text-sm">
+            © {new Date().getFullYear()} Mohammad Toriq. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <SocialLink href="https://github.com/ryuuken03" icon={<Github size={18} />} />
+            <SocialLink href="https://www.linkedin.com/in/mohammadtoriq/" icon={<Linkedin size={18} />} />
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
 
-// Components
+// Subcomponents
 
-function ExperienceItem({ dates, role, desc, stack }: any) {
+function SectionHeader({ title, subtitle, centered = false }: { title: string, subtitle: string, centered?: boolean }) {
   return (
-    <div className="flex flex-col md:flex-row gap-4 md:gap-8 group">
-      <div className="w-32 flex-shrink-0 text-sm md:text-[15px] pt-1 text-neutral-500 font-['JetBrains_Mono'] mt-1">
-        {dates}
-      </div>
-      <div className="flex-1">
-        <h4 className="text-lg text-white/80 mb-4">{role}</h4>
-        <p className="text-[15px] md:text-lg leading-relaxed mb-6 text-[#a1a1aa] max-w-2xl">{desc}</p>
-        <p className="text-sm font-['JetBrains_Mono'] font-medium text-neutral-500 uppercase tracking-wider">{stack}</p>
-      </div>
+    <div className={`mb-10 ${centered ? 'flex flex-col items-center text-center' : ''}`}>
+      <h3 className="text-emerald-500 font-semibold tracking-wider uppercase text-xs mb-3 flex items-center gap-2">
+        <span className="w-4 h-[2px] bg-emerald-500"></span> {subtitle} {centered && <span className="w-4 h-[2px] bg-emerald-500"></span>}
+      </h3>
+      <h2 className="text-3xl md:text-5xl font-['Plus_Jakarta_Sans'] font-bold text-white">{title}</h2>
     </div>
   );
 }
 
-function ProjectCard({ title, type, desc, tags, colorHex, icon }: any) {
+function Stat({ label, value }: { label: string, value: string }) {
   return (
-    <div className="bg-[#111111] rounded-[2.5rem] p-8 md:p-12 border border-white/5 hover:border-white/10 transition-colors flex flex-col group relative overflow-hidden h-[450px]">
-      {/* Background ambient color */}
-      <div className={`absolute top-0 right-0 w-64 h-64 bg-[${colorHex}] opacity-5 blur-[60px] rounded-full translate-x-1/2 -translate-y-1/2 transition-opacity group-hover:opacity-10 pointer-events-none`}></div>
+    <div className="text-center group">
+      <div className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">{value}</div>
+      <div className="text-slate-500 text-sm md:text-base font-semibold uppercase tracking-wider">{label}</div>
+    </div>
+  );
+}
 
-      <div className="relative z-10 flex-1 flex flex-col">
-        <div className="flex items-center justify-between mb-8">
-          <span className={`px-4 py-2 bg-[${colorHex}]/10 text-[${colorHex}] border border-[${colorHex}]/20 rounded-full font-bold uppercase tracking-widest text-xs`}>
-            {type}
+function InfoItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+  return (
+    <div className="flex items-center justify-between p-4 rounded-xl bg-[#1a1a1a] border border-white/5 w-full">
+      <div className="flex items-center gap-3">
+        <div className="text-emerald-500">
+          {icon}
+        </div>
+        <div className="text-sm font-medium text-slate-300">{label}</div>
+      </div>
+      <div className="text-sm text-slate-400">{value}</div>
+    </div>
+  );
+}
+
+function SkillCard({ icon, title, skills }: { icon: React.ReactNode, title: string, skills: string[] }) {
+  return (
+    <div className="bg-[#111] border border-white/5 rounded-2xl p-8 hover:-translate-y-1 hover:border-emerald-500/30 transition-all duration-300 group shadow-lg">
+      <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 mb-6 group-hover:scale-110 transition-transform">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold text-white mb-6 font-['Plus_Jakarta_Sans']">{title}</h3>
+      <ul className="space-y-4 text-sm font-medium">
+        {skills.map((skill, i) => (
+          <li key={i} className="flex items-center justify-between text-slate-400">
+            <span>{skill}</span>
+            <div className="w-2 h-2 rounded-full bg-white/10 group-hover:bg-emerald-500/50 transition-colors"></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function ExperienceItem({ dates, role, company, description, align, latest }: any) {
+  const isLeft = align === 'left';
+
+  return (
+    <div className={`relative flex flex-col md:flex-row items-center justify-between w-full mb-8 ${isLeft ? 'md:flex-row-reverse' : ''}`}>
+      {/* Mobile left-aligned layout adjustments */}
+      <div className="md:hidden absolute left-0 top-6 bottom-[-32px] w-px bg-white/5"></div>
+
+      {/* Content */}
+      <div className={`w-full md:w-[45%] pl-8 md:pl-0 ${isLeft ? 'md:text-right' : 'md:text-left'} relative`}>
+        {/* Dot for mobile */}
+        <div className={`md:hidden absolute left-[-4px] top-6 w-2 h-2 rounded-full ${latest ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'bg-slate-600'}`}></div>
+
+        <div className={`bg-[#111] border border-white/5 rounded-2xl p-6 md:p-8 hover:border-emerald-500/30 transition-colors relative group`}>
+          <div className={`text-emerald-500 font-semibold text-sm mb-2 font-['JetBrains_Mono'] ${isLeft ? 'md:justify-end' : ''} flex items-center gap-2`}>
+            <Calendar size={14} />
+            {dates}
+          </div>
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-1 font-['Plus_Jakarta_Sans']">{role}</h3>
+          <div className="text-slate-300 font-medium mb-4">{company}</div>
+          <p className="text-slate-400 leading-relaxed text-sm md:text-base">
+            {description}
+          </p>
+        </div>
+      </div>
+
+      {/* Center Dot for Desktop */}
+      <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#0a0a0a] border border-white/10 items-center justify-center z-10">
+        <div className={`w-3 h-3 rounded-full ${latest ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]' : 'bg-slate-600'}`}></div>
+      </div>
+
+      {/* Empty space for the other side */}
+      <div className="hidden md:block w-[45%]"></div>
+    </div>
+  );
+}
+
+function ProjectCard({ title, category, description, tech }: any) {
+  return (
+    <div className="bg-[#0a0a0a] border border-white/5 rounded-2xl p-8 hover:-translate-y-2 hover:border-emerald-500/30 transition-all duration-300 group flex flex-col h-full cursor-pointer shadow-lg">
+      <div className="flex justify-between items-center mb-8">
+        <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <div className="flex gap-4">
+          <a href="#" className="text-slate-500 hover:text-emerald-400 transition-colors"><Github size={20} /></a>
+          <a href="#" className="text-slate-500 hover:text-emerald-400 transition-colors"><ExternalLink size={20} /></a>
+        </div>
+      </div>
+
+      <div className="text-xs font-semibold tracking-wider text-emerald-500 mb-3 uppercase">{category}</div>
+      <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors font-['Plus_Jakarta_Sans']">{title}</h3>
+      <p className="text-slate-400 mb-8 flex-1 leading-relaxed text-sm">{description}</p>
+
+      <div className="flex flex-wrap gap-2 mt-auto">
+        {tech.map((t: string, i: number) => (
+          <span key={i} className="text-xs font-['JetBrains_Mono'] text-slate-500 bg-[#111] px-2 py-1 rounded-md border border-white/5">
+            {t}
           </span>
-          <div className="w-12 h-12 bg-white/5 rounded-full flex items-center justify-center text-xl text-white/50 border border-white/10 group-hover:bg-white/10 transition-colors">
-            {icon}
-          </div>
-        </div>
-
-        <h3 className="text-3xl md:text-4xl font-['Outfit'] font-bold text-white mb-4 tracking-tighter">{title}</h3>
-        <p className="text-lg text-[#a1a1aa] mb-auto leading-relaxed max-w-sm">{desc}</p>
-
-        <div className="flex items-center justify-between mt-8 pt-8 border-t border-white/10">
-          <div className="flex gap-2">
-            {tags.map((tag: string, i: number) => (
-              <span key={i} className="text-xs font-['JetBrains_Mono'] text-neutral-400">
-                {tag}{i < tags.length - 1 ? ' •' : ''}
-              </span>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-function SocialIcon({ icon, link }: { icon: React.ReactNode, link: string }) {
+function SocialLink({ href, icon }: { href: string, icon: React.ReactNode }) {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-white/10 bg-[#1c1c1c] text-white flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300" aria-label={link}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="w-10 h-10 rounded-full bg-[#111] border border-white/5 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/30 transition-colors"
+    >
       {icon}
     </a>
   );
