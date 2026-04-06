@@ -114,14 +114,6 @@ function App() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      {/* <div className="border-y border-white/5 bg-[#111]/30 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 py-10 flex flex-wrap justify-center gap-12 md:gap-24">
-          <Stat label="Years Experience" value="7+" />
-          <Stat label="Projects Completed" value="30+" />
-          <Stat label="Happy Clients" value="15+" />
-        </div>
-      </div> */}
 
       {/* About Section */}
       <section id="about" className="py-24 px-6 max-w-7xl mx-auto">
@@ -315,15 +307,6 @@ function SectionHeader({ title, subtitle, centered = false }: { title: string, s
         <span className="w-4 h-[2px] bg-emerald-500"></span> {subtitle} {centered && <span className="w-4 h-[2px] bg-emerald-500"></span>}
       </h3>
       <h2 className="text-3xl md:text-5xl font-['Plus_Jakarta_Sans'] font-bold text-white">{title}</h2>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string, value: string }) {
-  return (
-    <div className="text-center group">
-      <div className="text-4xl md:text-5xl font-['Plus_Jakarta_Sans'] font-black text-white mb-2 group-hover:text-emerald-400 transition-colors">{value}</div>
-      <div className="text-slate-500 text-sm md:text-base font-semibold uppercase tracking-wider">{label}</div>
     </div>
   );
 }
