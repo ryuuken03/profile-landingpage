@@ -271,7 +271,7 @@ function App() {
             <a href="mailto:mohammad.toriq03@gmail.com" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-3 shadow-lg shadow-emerald-500/20">
               mohammad.toriq03@gmail.com
             </a>
-            <a href="https://wa.me/6285797416210" className="bg-[#222] hover:bg-[#333] border border-white/10 text-white px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-3">
+            <a href="https://wa.me/6285168626313" className="bg-[#222] hover:bg-[#333] border border-white/10 text-white px-8 py-4 rounded-xl font-medium transition-colors flex items-center justify-center gap-3">
               <FaWhatsapp size={20} className="text-[#25D366]" />
               WhatsApp Me
             </a>
